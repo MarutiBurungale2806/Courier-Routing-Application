@@ -6,7 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GeoencodingService {
-  apiUrl = 'https://api.countrystatecity.in/v1/countries';
+  apiUrlForCities = 'https://api.countrystatecity.in/v1/countries';
+  apiUrlforGeocode = 'https://geocode.maps.co/search?q='
+
   apiKey = 'NHhvOEcyWk50N2Vna3VFTE00bFp3MjFKR0ZEOUhkZlg4RTk1MlJlaA==';
 
   httpOptions = {
@@ -18,12 +20,12 @@ export class GeoencodingService {
   constructor(private http: HttpClient) {}
   
   getCities(countryCode: string, stateCode: string): Observable<any> {
-    const url = `${this.apiUrl}/${countryCode}/states/${stateCode}/cities`;
+    const url = `${this.apiUrlForCities}/${countryCode}/states/${stateCode}/cities`;
     return this.http.get<any>(url, this.httpOptions);
   }
 
   getCoordinates(location: string): Observable<any> {
-    const url = `${this.apiUrl}${location}`;
+    const url = `${this.apiUrlforGeocode}${location}`;
     return this.http.get(url)
   }
 }
