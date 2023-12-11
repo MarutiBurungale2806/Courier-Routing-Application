@@ -1,0 +1,44 @@
+<div class="container">
+    <h1>Courier Routing Application</h1>
+
+    <form (ngSubmit)="calculateDistance()">
+        <!-- Form fields -->
+        <div>
+            <label for="source">Source:</label>
+            <input type="text" id="source" name="source" [(ngModel)]="source" list="sourceList" required>
+            <datalist id="sourceList">
+                <option *ngFor="let city of filteredCities" [value]="city.name">{{ city.name }}</option>
+            </datalist>
+        </div>
+
+        <div>
+            <label for="destination">Destination:</label>
+            <input type="text" id="destination" name="destination" [(ngModel)]="destination" list="destinationList" required>
+            <datalist id="destinationList">
+                <option *ngFor="let city of filteredCities" [value]="city.name">{{ city.name }}</option>
+            </datalist>
+        </div>
+
+        <div *ngFor="let stop of stops; let i = index">
+            <label for="stop{{i+1}}">Stop {{i+1}}:</label>
+            <input type="text" id="stop{{i+1}}" name="stop{{i+1}}" [(ngModel)]="stop.name" required list="stopList">
+            <datalist id="stopList">
+                <option *ngFor="let city of filteredCities" [value]="city.name">{{ city.name }}</option>
+            </datalist>
+        </div>
+
+        <button type="button" (click)="addStop()">Add Stop</button>
+        <button type="button" (click)="reset()">Reset ALL</button>
+
+        <button type="submit">Find Shortest Path</button>
+    </form>
+
+    <div *ngIf="showDistance">
+        <h2>Total Travelled Distance : {{ calculatedDistance }} km</h2>
+    </div>
+    <div class="progress-tracker">
+        <ul class="progress-steps">
+            <li *ngFor="let step of steps" [class.active]="steps.indexOf(step) === 0">{{ step }}</li>
+        </ul>
+    </div>
+</div>

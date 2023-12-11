@@ -1,0 +1,144 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #ddebfc;
+}
+
+.container {
+    max-width: 90%;
+    margin: 0 auto;
+    width: 500px;
+    padding: 25px;
+    padding-top: 20px;
+    border-radius: 12px;
+    border: 3px solid #efa31d;
+    background: #ffffff;
+    box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
+}
+
+.progress-tracker {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.progress-steps {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.progress-steps li {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.progress-steps li::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: block;
+    margin: 0 auto 5px;
+    line-height: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.progress-steps li.active::before {
+    background-color: #007bff;
+    /* Change color for active step */
+}
+
+.progress-steps li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    /* Line spans the entire space between steps */
+    height: 4px;
+    /* Adjust line thickness */
+    background-color: #ccc;
+    /* Change line color */
+    top: 17%;
+    left: 50%;
+    z-index: 0;
+}
+
+.progress-steps li.active:not(:last-child)::after {
+    background-color: #007bff;
+    /* Change color for active line */
+}
+
+.progress-bar {
+    height: 4px;
+    background-color: #ccc;
+    position: relative;
+    margin-top: 10px;
+}
+
+.progress {
+    height: 100%;
+    width: 0;
+    background-color: #007bff;
+    /* Change color for active progress */
+    transition: width 0.3s ease;
+}
+
+.container input {
+    margin-bottom: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+}
+
+.container input::after {
+    content: "";
+    width: 80px;
+    height: 2px;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    background: #efa31d;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for distance section */
+.calculated-distance {
+    margin-top: 20px;
+}
+
+.calculated-distance h2 {
+    margin-bottom: 10px;
+}
